@@ -24,13 +24,25 @@ spec:
                 name: viajesgvr-common-config
           env:
             - name: DB_URL
-              value: "jdbc:mysql:///=true&useSSL=false&serverTimezone=UTC"
+              value: "jdbc:mysql://reservation-status-mysql:3306/db_viajesgvr_reservation_status?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC"
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: viajesgvr-secrets
                   key: DB_USERNAME
             - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: viajesgvr-secrets
+                  key: DB_PASSWORD
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://reservation-status-mysql:3306/db_viajesgvr_reservation_status?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC"
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: viajesgvr-secrets
+                  key: DB_USERNAME
+            - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: viajesgvr-secrets
