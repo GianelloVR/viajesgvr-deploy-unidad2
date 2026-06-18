@@ -8,4 +8,4 @@ data:
   SPRING_CONFIG_IMPORT: "optional:configserver:http://config-server:8888"
   EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka-server:8761/eureka/"
   EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: "http://eureka-server:8761/eureka/"
-  EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+  EUREKA_INSTANCE_PREFER_IP_ADDRESS: "false"

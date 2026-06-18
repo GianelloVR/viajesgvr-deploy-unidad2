@@ -20,6 +20,8 @@ spec:
           args:
             - start-dev
             - --import-realm
+            - --proxy-headers=xforwarded
+            - --hostname-strict=false
           ports:
             - containerPort: 8080
           env:
@@ -38,12 +40,12 @@ spec:
             - name: KC_HOSTNAME_STRICT
               value: "false"
           volumeMounts:
-            - name: realm-config
+            - name: realm-import
               mountPath: /opt/keycloak/data/import
       volumes:
-        - name: realm-config
+        - name: realm-import
           configMap:
-            name: keycloak-realm-config
+            name: viajesgvr-keycloak-realm
 ---
 apiVersion: v1
 kind: Service

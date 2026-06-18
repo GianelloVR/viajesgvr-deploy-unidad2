@@ -22,6 +22,15 @@ spec:
           envFrom:
             - configMapRef:
                 name: viajesgvr-common-config
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: api-gateway
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: api-gateway
+            - name: EUREKA_INSTANCE_INSTANCE_ID
+              value: api-gateway:8080
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "false"
 ---
 apiVersion: v1
 kind: Service

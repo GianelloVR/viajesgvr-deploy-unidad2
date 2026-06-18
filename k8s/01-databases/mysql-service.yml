@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+  namespace: viajesgvr
+data:
+  init.sql: |
+    CREATE DATABASE IF NOT EXISTS db_viajesgvr_package;
+    CREATE DATABASE IF NOT EXISTS db_viajesgvr_search;
+    CREATE DATABASE IF NOT EXISTS db_viajesgvr_reservation;
+    CREATE DATABASE IF NOT EXISTS db_viajesgvr_payment;
+    CREATE DATABASE IF NOT EXISTS db_viajesgvr_reservation_status;
+    CREATE DATABASE IF NOT EXISTS db_viajesgvr_report;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-service
+  namespace: viajesgvr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-service
+  template:
+    metadata:
+      labels:
+        app: mysql-service
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: viajesgvr-secrets
+                  key: MYSQL_ROOT_PASSWORD
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: mysql-data
+          emptyDir: {}
+        - name: mysql-initdb
+          configMap:
+            name: mysql-initdb-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  namespace: viajesgvr
+spec:
+  type: ClusterIP
+  selector:
+    app: mysql-service
+  ports:
+    - port: 3306
+      targetPort: 3306

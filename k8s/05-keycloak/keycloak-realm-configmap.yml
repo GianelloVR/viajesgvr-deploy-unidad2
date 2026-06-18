@@ -1,188 +1,125 @@
-apiVersion: v1
+﻿apiVersion: v1
+data:
+  viajesgvr-realm.json: "{\r\n    \"realm\":  \"viajesgvr\",\r\n    \"enabled\":  true,\r\n
+    \   \"sslRequired\":  \"none\",\r\n    \"registrationAllowed\":  true,\r\n    \"loginWithEmailAllowed\":
+    \ true,\r\n    \"duplicateEmailsAllowed\":  false,\r\n    \"resetPasswordAllowed\":
+    \ true,\r\n    \"bruteForceProtected\":  true,\r\n    \"permanentLockout\":  false,\r\n
+    \   \"failureFactor\":  5,\r\n    \"waitIncrementSeconds\":  60,\r\n    \"quickLoginCheckMilliSeconds\":
+    \ 1000,\r\n    \"minimumQuickLoginWaitSeconds\":  60,\r\n    \"maxFailureWaitSeconds\":
+    \ 900,\r\n    \"maxDeltaTimeSeconds\":  43200,\r\n    \"passwordPolicy\":  \"length(8)
+    and digits(1)\",\r\n    \"roles\":  {\r\n                  \"realm\":  [\r\n                                {\r\n
+    \                                   \"name\":  \"ADMIN\"\r\n                                },\r\n
+    \                               {\r\n                                    \"name\":
+    \ \"CLIENT\"\r\n                                }\r\n                            ]\r\n
+    \             },\r\n    \"clients\":  [\r\n                    {\r\n                        \"clientId\":
+    \ \"viajesgvr-frontend\",\r\n                        \"name\":  \"viajesgvr-frontend\",\r\n
+    \                       \"enabled\":  true,\r\n                        \"protocol\":
+    \ \"openid-connect\",\r\n                        \"publicClient\":  true,\r\n
+    \                       \"standardFlowEnabled\":  true,\r\n                        \"directAccessGrantsEnabled\":
+    \ true,\r\n                        \"redirectUris\":  [\r\n                                             \"http://192.168.59.100:30082\",\r\n
+    \                                            \"http://192.168.59.100:30082/\",\r\n
+    \                                            \"http://192.168.59.100:30082/*\",\r\n
+    \                                            \"http://localhost:30082\",\r\n                                             \"http://localhost:30082/\",\r\n
+    \                                            \"http://localhost:30082/*\"\r\n
+    \                                        ],\r\n                        \"webOrigins\":
+    \ [\r\n                                           \"http://192.168.59.100:30082\",\r\n
+    \                                          \"http://localhost:30082\",\r\n                                           \"+\"\r\n
+    \                                      ],\r\n                        \"attributes\":
+    \ {\r\n                                           \"post.logout.redirect.uris\":
+    \ \"+\"\r\n                                       },\r\n                        \"protocolMappers\":
+    \ [\r\n                                                {\r\n                                                    \"name\":
+    \ \"phone\",\r\n                                                    \"protocol\":
+    \ \"openid-connect\",\r\n                                                    \"protocolMapper\":
+    \ \"oidc-usermodel-attribute-mapper\",\r\n                                                    \"consentRequired\":
+    \ false,\r\n                                                    \"config\":  {\r\n
+    \                                                                  \"user.attribute\":
+    \ \"phone\",\r\n                                                                   \"claim.name\":
+    \ \"phone\",\r\n                                                                   \"jsonType.label\":
+    \ \"String\",\r\n                                                                   \"id.token.claim\":
+    \ \"true\",\r\n                                                                   \"access.token.claim\":
+    \ \"true\",\r\n                                                                   \"userinfo.token.claim\":
+    \ \"true\",\r\n                                                                   \"multivalued\":
+    \ \"false\"\r\n                                                               }\r\n
+    \                                               },\r\n                                                {\r\n
+    \                                                   \"name\":  \"nationality\",\r\n
+    \                                                   \"protocol\":  \"openid-connect\",\r\n
+    \                                                   \"protocolMapper\":  \"oidc-usermodel-attribute-mapper\",\r\n
+    \                                                   \"consentRequired\":  false,\r\n
+    \                                                   \"config\":  {\r\n                                                                   \"user.attribute\":
+    \ \"nationality\",\r\n                                                                   \"claim.name\":
+    \ \"nationality\",\r\n                                                                   \"jsonType.label\":
+    \ \"String\",\r\n                                                                   \"id.token.claim\":
+    \ \"true\",\r\n                                                                   \"access.token.claim\":
+    \ \"true\",\r\n                                                                   \"userinfo.token.claim\":
+    \ \"true\",\r\n                                                                   \"multivalued\":
+    \ \"false\"\r\n                                                               }\r\n
+    \                                               },\r\n                                                {\r\n
+    \                                                   \"name\":  \"documentNumber\",\r\n
+    \                                                   \"protocol\":  \"openid-connect\",\r\n
+    \                                                   \"protocolMapper\":  \"oidc-usermodel-attribute-mapper\",\r\n
+    \                                                   \"consentRequired\":  false,\r\n
+    \                                                   \"config\":  {\r\n                                                                   \"user.attribute\":
+    \ \"documentNumber\",\r\n                                                                   \"claim.name\":
+    \ \"documentNumber\",\r\n                                                                   \"jsonType.label\":
+    \ \"String\",\r\n                                                                   \"id.token.claim\":
+    \ \"true\",\r\n                                                                   \"access.token.claim\":
+    \ \"true\",\r\n                                                                   \"userinfo.token.claim\":
+    \ \"true\",\r\n                                                                   \"multivalued\":
+    \ \"false\"\r\n                                                               }\r\n
+    \                                               }\r\n                                            ]\r\n
+    \                   }\r\n                ],\r\n    \"components\":  {\r\n                       \"org.keycloak.userprofile.UserProfileProvider\":
+    \ [\r\n                                                                            {\r\n
+    \                                                                               \"id\":
+    \ \"7c4fdfb8-e944-4cc4-a1d9-f839f6932cb9\",\r\n                                                                                \"providerId\":
+    \ \"declarative-user-profile\",\r\n                                                                                \"subComponents\":
+    \ {\r\n\r\n                                                                                                  },\r\n
+    \                                                                               \"config\":
+    \ {\r\n                                                                                               \"kc.user.profile.config\":
+    \ [\r\n                                                                                                                              \"{\\\"unmanagedAttributePolicy\\\":\\\"ADMIN_EDIT\\\",\\\"attributes\\\":[{\\\"name\\\":\\\"username\\\",\\\"displayName\\\":\\\"Nombre
+    de usuario\\\",\\\"validations\\\":{\\\"length\\\":{\\\"min\\\":3,\\\"max\\\":255},\\\"username-prohibited-characters\\\":{}},\\\"permissions\\\":{\\\"view\\\":[\\\"admin\\\",\\\"user\\\"],\\\"edit\\\":[\\\"admin\\\",\\\"user\\\"]}},{\\\"name\\\":\\\"email\\\",\\\"displayName\\\":\\\"Correo
+    electronico\\\",\\\"required\\\":{\\\"roles\\\":[\\\"user\\\",\\\"admin\\\"]},\\\"validations\\\":{\\\"email\\\":{},\\\"length\\\":{\\\"max\\\":255}},\\\"permissions\\\":{\\\"view\\\":[\\\"admin\\\",\\\"user\\\"],\\\"edit\\\":[\\\"admin\\\",\\\"user\\\"]}},{\\\"name\\\":\\\"firstName\\\",\\\"displayName\\\":\\\"Nombre\\\",\\\"required\\\":{\\\"roles\\\":[\\\"user\\\",\\\"admin\\\"]},\\\"validations\\\":{\\\"length\\\":{\\\"max\\\":255},\\\"person-name-prohibited-characters\\\":{}},\\\"permissions\\\":{\\\"view\\\":[\\\"admin\\\",\\\"user\\\"],\\\"edit\\\":[\\\"admin\\\",\\\"user\\\"]}},{\\\"name\\\":\\\"lastName\\\",\\\"displayName\\\":\\\"Apellido\\\",\\\"required\\\":{\\\"roles\\\":[\\\"user\\\",\\\"admin\\\"]},\\\"validations\\\":{\\\"length\\\":{\\\"max\\\":255},\\\"person-name-prohibited-characters\\\":{}},\\\"permissions\\\":{\\\"view\\\":[\\\"admin\\\",\\\"user\\\"],\\\"edit\\\":[\\\"admin\\\",\\\"user\\\"]}},{\\\"name\\\":\\\"phone\\\",\\\"displayName\\\":\\\"Telefono\\\",\\\"required\\\":{\\\"roles\\\":[\\\"user\\\",\\\"admin\\\"]},\\\"validations\\\":{\\\"length\\\":{\\\"min\\\":8,\\\"max\\\":20}},\\\"permissions\\\":{\\\"view\\\":[\\\"admin\\\",\\\"user\\\"],\\\"edit\\\":[\\\"admin\\\",\\\"user\\\"]}},{\\\"name\\\":\\\"nationality\\\",\\\"displayName\\\":\\\"Nacionalidad\\\",\\\"required\\\":{\\\"roles\\\":[\\\"user\\\",\\\"admin\\\"]},\\\"validations\\\":{\\\"length\\\":{\\\"min\\\":3,\\\"max\\\":80}},\\\"permissions\\\":{\\\"view\\\":[\\\"admin\\\",\\\"user\\\"],\\\"edit\\\":[\\\"admin\\\",\\\"user\\\"]}},{\\\"name\\\":\\\"documentNumber\\\",\\\"displayName\\\":\\\"Documento
+    de identidad\\\",\\\"required\\\":{\\\"roles\\\":[\\\"user\\\",\\\"admin\\\"]},\\\"validations\\\":{\\\"length\\\":{\\\"min\\\":5,\\\"max\\\":30}},\\\"permissions\\\":{\\\"view\\\":[\\\"admin\\\",\\\"user\\\"],\\\"edit\\\":[\\\"admin\\\",\\\"user\\\"]}}]}\"\r\n
+    \                                                                                                                         ]\r\n
+    \                                                                                          }\r\n
+    \                                                                           }\r\n
+    \                                                                       ]\r\n
+    \                  },\r\n    \"users\":  [\r\n                  {\r\n                      \"username\":
+    \ \"admin\",\r\n                      \"enabled\":  true,\r\n                      \"emailVerified\":
+    \ true,\r\n                      \"firstName\":  \"Admin\",\r\n                      \"lastName\":
+    \ \"ViajesGVR\",\r\n                      \"email\":  \"admin@viajesgvr.cl\",\r\n
+    \                     \"attributes\":  {\r\n                                         \"phone\":
+    \ [\r\n                                                       \"999999999\"\r\n
+    \                                                  ],\r\n                                         \"nationality\":
+    \ [\r\n                                                             \"Chilena\"\r\n
+    \                                                        ],\r\n                                         \"documentNumber\":
+    \ [\r\n                                                                \"11111111-1\"\r\n
+    \                                                           ]\r\n                                     },\r\n
+    \                     \"credentials\":  [\r\n                                          {\r\n
+    \                                             \"type\":  \"password\",\r\n                                              \"value\":
+    \ \"admin123\",\r\n                                              \"temporary\":
+    \ false\r\n                                          }\r\n                                      ],\r\n
+    \                     \"realmRoles\":  [\r\n                                         \"ADMIN\"\r\n
+    \                                    ]\r\n                  },\r\n                  {\r\n
+    \                     \"username\":  \"cliente\",\r\n                      \"enabled\":
+    \ true,\r\n                      \"emailVerified\":  true,\r\n                      \"firstName\":
+    \ \"Cliente\",\r\n                      \"lastName\":  \"ViajesGVR\",\r\n                      \"email\":
+    \ \"cliente@viajesgvr.cl\",\r\n                      \"attributes\":  {\r\n                                         \"phone\":
+    \ [\r\n                                                       \"912345678\"\r\n
+    \                                                  ],\r\n                                         \"nationality\":
+    \ [\r\n                                                             \"Chilena\"\r\n
+    \                                                        ],\r\n                                         \"documentNumber\":
+    \ [\r\n                                                                \"22222222-2\"\r\n
+    \                                                           ]\r\n                                     },\r\n
+    \                     \"credentials\":  [\r\n                                          {\r\n
+    \                                             \"type\":  \"password\",\r\n                                              \"value\":
+    \ \"cliente123\",\r\n                                              \"temporary\":
+    \ false\r\n                                          }\r\n                                      ],\r\n
+    \                     \"realmRoles\":  [\r\n                                         \"CLIENT\"\r\n
+    \                                    ]\r\n                  }\r\n              ],\r\n
+    \   \"internationalizationEnabled\":  true,\r\n    \"supportedLocales\":  [\r\n
+    \                            \"es\"\r\n                         ],\r\n    \"defaultLocale\":
+    \ \"es\"\r\n}"
 kind: ConfigMap
 metadata:
-  name: keycloak-realm-config
+  name: viajesgvr-keycloak-realm
   namespace: viajesgvr
-data:
-  viajesgvr-realm.json: |
-    {
-        "realm":  "viajesgvr",
-        "enabled":  true,
-        "sslRequired":  "none",
-        "registrationAllowed":  true,
-        "loginWithEmailAllowed":  true,
-        "duplicateEmailsAllowed":  false,
-        "resetPasswordAllowed":  true,
-        "bruteForceProtected":  true,
-        "permanentLockout":  false,
-        "failureFactor":  5,
-        "waitIncrementSeconds":  60,
-        "quickLoginCheckMilliSeconds":  1000,
-        "minimumQuickLoginWaitSeconds":  60,
-        "maxFailureWaitSeconds":  900,
-        "maxDeltaTimeSeconds":  43200,
-        "passwordPolicy":  "length(8) and digits(1)",
-        "roles":  {
-                      "realm":  [
-                                    {
-                                        "name":  "ADMIN"
-                                    },
-                                    {
-                                        "name":  "CLIENT"
-                                    }
-                                ]
-                  },
-        "clients":  [
-                        {
-                            "clientId":  "viajesgvr-frontend",
-                            "name":  "viajesgvr-frontend",
-                            "enabled":  true,
-                            "protocol":  "openid-connect",
-                            "publicClient":  true,
-                            "standardFlowEnabled":  true,
-                            "directAccessGrantsEnabled":  true,
-                            "redirectUris":  [
-                                                 "http://18.216.240.192:8070/*",
-                                                 "https://18.216.240.192:8070/*",
-                                                 "http://localhost:8070/*"
-                                             ],
-                            "webOrigins":  [
-                                               "http://18.216.240.192:8070",
-                                               "https://18.216.240.192:8070",
-                                               "http://localhost:8070"
-                                           ],
-                            "attributes":  {
-                                               "post.logout.redirect.uris":  "+"
-                                           },
-                            "protocolMappers":  [
-                                                    {
-                                                        "name":  "phone",
-                                                        "protocol":  "openid-connect",
-                                                        "protocolMapper":  "oidc-usermodel-attribute-mapper",
-                                                        "consentRequired":  false,
-                                                        "config":  {
-                                                                       "user.attribute":  "phone",
-                                                                       "claim.name":  "phone",
-                                                                       "jsonType.label":  "String",
-                                                                       "id.token.claim":  "true",
-                                                                       "access.token.claim":  "true",
-                                                                       "userinfo.token.claim":  "true",
-                                                                       "multivalued":  "false"
-                                                                   }
-                                                    },
-                                                    {
-                                                        "name":  "nationality",
-                                                        "protocol":  "openid-connect",
-                                                        "protocolMapper":  "oidc-usermodel-attribute-mapper",
-                                                        "consentRequired":  false,
-                                                        "config":  {
-                                                                       "user.attribute":  "nationality",
-                                                                       "claim.name":  "nationality",
-                                                                       "jsonType.label":  "String",
-                                                                       "id.token.claim":  "true",
-                                                                       "access.token.claim":  "true",
-                                                                       "userinfo.token.claim":  "true",
-                                                                       "multivalued":  "false"
-                                                                   }
-                                                    },
-                                                    {
-                                                        "name":  "documentNumber",
-                                                        "protocol":  "openid-connect",
-                                                        "protocolMapper":  "oidc-usermodel-attribute-mapper",
-                                                        "consentRequired":  false,
-                                                        "config":  {
-                                                                       "user.attribute":  "documentNumber",
-                                                                       "claim.name":  "documentNumber",
-                                                                       "jsonType.label":  "String",
-                                                                       "id.token.claim":  "true",
-                                                                       "access.token.claim":  "true",
-                                                                       "userinfo.token.claim":  "true",
-                                                                       "multivalued":  "false"
-                                                                   }
-                                                    }
-                                                ]
-                        }
-                    ],
-        "components":  {
-                           "org.keycloak.userprofile.UserProfileProvider":  [
-                                                                                {
-                                                                                    "id":  "7c4fdfb8-e944-4cc4-a1d9-f839f6932cb9",
-                                                                                    "providerId":  "declarative-user-profile",
-                                                                                    "subComponents":  {
-    
-                                                                                                      },
-                                                                                    "config":  {
-                                                                                                   "kc.user.profile.config":  [
-                                                                                                                                  "{\"unmanagedAttributePolicy\":\"ADMIN_EDIT\",\"attributes\":[{\"name\":\"username\",\"displayName\":\"Nombre de usuario\",\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]}},{\"name\":\"email\",\"displayName\":\"Correo electronico\",\"required\":{\"roles\":[\"user\",\"admin\"]},\"validations\":{\"email\":{},\"length\":{\"max\":255}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]}},{\"name\":\"firstName\",\"displayName\":\"Nombre\",\"required\":{\"roles\":[\"user\",\"admin\"]},\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]}},{\"name\":\"lastName\",\"displayName\":\"Apellido\",\"required\":{\"roles\":[\"user\",\"admin\"]},\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]}},{\"name\":\"phone\",\"displayName\":\"Telefono\",\"required\":{\"roles\":[\"user\",\"admin\"]},\"validations\":{\"length\":{\"min\":8,\"max\":20}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]}},{\"name\":\"nationality\",\"displayName\":\"Nacionalidad\",\"required\":{\"roles\":[\"user\",\"admin\"]},\"validations\":{\"length\":{\"min\":3,\"max\":80}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]}},{\"name\":\"documentNumber\",\"displayName\":\"Documento de identidad\",\"required\":{\"roles\":[\"user\",\"admin\"]},\"validations\":{\"length\":{\"min\":5,\"max\":30}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]}}]}"
-                                                                                                                              ]
-                                                                                               }
-                                                                                }
-                                                                            ]
-                       },
-        "users":  [
-                      {
-                          "username":  "admin",
-                          "enabled":  true,
-                          "emailVerified":  true,
-                          "firstName":  "Admin",
-                          "lastName":  "ViajesGVR",
-                          "email":  "admin@viajesgvr.cl",
-                          "attributes":  {
-                                             "phone":  [
-                                                           "999999999"
-                                                       ],
-                                             "nationality":  [
-                                                                 "Chilena"
-                                                             ],
-                                             "documentNumber":  [
-                                                                    "11111111-1"
-                                                                ]
-                                         },
-                          "credentials":  [
-                                              {
-                                                  "type":  "password",
-                                                  "value":  "admin123",
-                                                  "temporary":  false
-                                              }
-                                          ],
-                          "realmRoles":  [
-                                             "ADMIN"
-                                         ]
-                      },
-                      {
-                          "username":  "cliente",
-                          "enabled":  true,
-                          "emailVerified":  true,
-                          "firstName":  "Cliente",
-                          "lastName":  "ViajesGVR",
-                          "email":  "cliente@viajesgvr.cl",
-                          "attributes":  {
-                                             "phone":  [
-                                                           "912345678"
-                                                       ],
-                                             "nationality":  [
-                                                                 "Chilena"
-                                                             ],
-                                             "documentNumber":  [
-                                                                    "22222222-2"
-                                                                ]
-                                         },
-                          "credentials":  [
-                                              {
-                                                  "type":  "password",
-                                                  "value":  "cliente123",
-                                                  "temporary":  false
-                                              }
-                                          ],
-                          "realmRoles":  [
-                                             "CLIENT"
-                                         ]
-                      }
-                  ],
-        "internationalizationEnabled":  true,
-        "supportedLocales":  [
-                                 "es"
-                             ],
-        "defaultLocale":  "es"
-    }
-    
