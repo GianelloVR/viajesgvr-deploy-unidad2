@@ -35,14 +35,14 @@
                         "standardFlowEnabled":  true,
                         "directAccessGrantsEnabled":  true,
                         "redirectUris":  [
-                                             "http://18.216.240.192:8070/*",
-                                             "https://18.216.240.192:8070/*",
-                                             "http://localhost:8070/*"
+                                             "http://192.168.59.100:30082/*",
+                                             "http://localhost:30082/*",
+                                             "https://192.168.59.100:30443/*"
                                          ],
                         "webOrigins":  [
-                                           "http://18.216.240.192:8070",
-                                           "https://18.216.240.192:8070",
-                                           "http://localhost:8070"
+                                           "http://192.168.59.100:30082",
+                                           "http://localhost:30082",
+                                           "https://192.168.59.100:30443"
                                        ],
                         "attributes":  {
                                            "post.logout.redirect.uris":  "+"

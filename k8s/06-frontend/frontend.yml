@@ -19,6 +19,15 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+            - containerPort: 443
+          volumeMounts:
+            - name: frontend-tls
+              mountPath: /etc/nginx/tls
+              readOnly: true
+      volumes:
+        - name: frontend-tls
+          secret:
+            secretName: frontend-tls
 ---
 apiVersion: v1
 kind: Service
@@ -30,6 +39,11 @@ spec:
   selector:
     app: frontend
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: 80
       nodePort: 30082
+    - name: https
+      port: 443
+      targetPort: 443
+      nodePort: 30443
