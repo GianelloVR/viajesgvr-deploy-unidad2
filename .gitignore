@@ -8,3 +8,4 @@ running-backend.jar
 certs/
 k8s/00-base/frontend-tls-secret.yml
 backup-cluster-*.yml
+backup-old-mysql-yml/
